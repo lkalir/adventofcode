@@ -1,0 +1,18 @@
+[package]
+edition = "2018"
+name = "aocdata"
+version = "0.1.0"
+authors = ["Liam Kalir <liam.kalir@protonmail.com>"]
+
+build = "build.rs"
+
+[build-dependencies]
+cbindgen = "0.20.0"
+
+[dependencies]
+libc = "0.2.101"
+num-traits = "0.2.14"
+advent-of-code-data-rs = { path = "../advent-of-code-data-rs" }
+
+[lib]
+crate-type = ["cdylib"]

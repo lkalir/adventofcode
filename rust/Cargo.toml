@@ -1,0 +1,2 @@
+[workspace]
+members = ["./aocdata", "./advent-of-code-rs", "./advent-of-code-data-rs"]
