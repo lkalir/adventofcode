@@ -1,0 +1,9 @@
+*.egg-info
+dist/
+build/
+**/__pycache__
+.benchmarks/
+.pytest_cache
+.tox/
+pypyvenv/
+py3venv/
