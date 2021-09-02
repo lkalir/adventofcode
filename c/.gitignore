@@ -2,3 +2,4 @@ build/
 clang-build/
 debug/
 clang-debug/
+.cache/

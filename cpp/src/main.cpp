@@ -17,12 +17,12 @@ static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2020_sl
 
 class AocDate {
   public:
-    AocDate(uint8_t day, uint16_t year) : m_day(day), m_year(year) {};
+    AocDate(int day, int year) : m_day(day), m_year(year) {};
     ~AocDate() = default;
 
-    [[nodiscard]] auto is_day_valid() const -> bool { return m_day != 0 && m_day <= 25; }
-    [[nodiscard]] auto get_day() const -> uint8_t { return m_day; }
-    [[nodiscard]] auto get_year() const -> uint16_t { return m_year; }
+    [[nodiscard]] auto is_day_valid() const -> bool { return m_day >= 1 && m_day <= 25; }
+    [[nodiscard]] auto get_day() const -> int { return m_day; }
+    [[nodiscard]] auto get_year() const -> int { return m_year; }
 
     friend auto operator<<(std::ostream &out, const AocDate &date) -> std::ostream &
     {
@@ -31,8 +31,8 @@ class AocDate {
     }
 
   private:
-    uint8_t m_day;
-    uint16_t m_year;
+    int m_day;
+    int m_year;
 };
 
 auto get_fn(const AocDate &date) -> const std::unique_ptr<AbstractAdventSolution> &
@@ -76,8 +76,8 @@ auto get_fn(const AocDate &date) -> const std::unique_ptr<AbstractAdventSolution
 
 auto main(int argc, char **argv) -> int
 {
-    uint8_t day = 0;
-    uint16_t year = 0;
+    int day = 0;
+    int year = 0;
     int opt = 0;
 
     while (-1 != (opt = getopt(argc, argv, "d:y:")))

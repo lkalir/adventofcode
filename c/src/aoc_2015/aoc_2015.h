@@ -7,8 +7,7 @@ extern "C" {
 
 #include <aoc.h>
 
-int aoc_2015_day_1_part_1(const char_view_t *input);
-int aoc_2015_day_1_part_2(const char_view_t *input);
+extern const aoc_day_t aoc_2015_day_1;
 
 #ifdef __cplusplus
 }

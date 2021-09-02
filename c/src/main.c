@@ -1,24 +1,24 @@
-#include "aoc.h"
-#include "aoc_2015/aoc_2015.h"
 #include <adventofcode.h>
+#include <aoc.h>
+#include <aoc_2015/aoc_2015.h>
 #include <getopt.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-static const aoc_fn_t aoc_2015_fns[50] = {aoc_2015_day_1_part_1, aoc_2015_day_1_part_2};
-static const aoc_fn_t aoc_2016_fns[50] = {0};
-static const aoc_fn_t aoc_2017_fns[50] = {0};
-static const aoc_fn_t aoc_2018_fns[50] = {0};
-static const aoc_fn_t aoc_2019_fns[50] = {0};
-static const aoc_fn_t aoc_2020_fns[50] = {0};
-static const aoc_fn_t *aoc_years[] = {aoc_2015_fns, aoc_2016_fns, aoc_2017_fns,
-                                      aoc_2018_fns, aoc_2019_fns, aoc_2020_fns};
+static const aoc_day_t *const aoc_2015_fns[25] = {&aoc_2015_day_1};
+static const aoc_day_t *const aoc_2016_fns[25] = {0};
+static const aoc_day_t *const aoc_2017_fns[25] = {0};
+static const aoc_day_t *const aoc_2018_fns[25] = {0};
+static const aoc_day_t *const aoc_2019_fns[25] = {0};
+static const aoc_day_t *const aoc_2020_fns[25] = {0};
+static const aoc_day_t *const *const aoc_years[] = {aoc_2015_fns, aoc_2016_fns, aoc_2017_fns,
+                                                    aoc_2018_fns, aoc_2019_fns, aoc_2020_fns};
 
-const aoc_fn_t *get_fn(uint16_t year, uint8_t day, int part)
+const aoc_day_t *get_day(int year, int day)
 {
-    if (!day || day > 25 || !part || part > 2)
+    if (day < 1 || day > 25)
     {
         return NULL;
     }
@@ -39,7 +39,7 @@ const aoc_fn_t *get_fn(uint16_t year, uint8_t day, int part)
         return NULL;
     }
 
-    return &aoc_years[y_idx][2 * (day - 1) + (part - 1)];
+    return aoc_years[y_idx][day - 1];
 }
 
 void usage(char **argv)
@@ -52,9 +52,9 @@ int main(int argc, char **argv)
 {
     int opt = 0;
     int part = 0;
-    uint8_t day = 0;
-    uint16_t year = 0;
-    const aoc_fn_t *fn = NULL;
+    int day = 0;
+    int year = 0;
+    const aoc_day_t *day_fns = NULL;
 
     while (-1 != (opt = getopt(argc, argv, "d:y:p:")))
     {
@@ -78,26 +78,26 @@ int main(int argc, char **argv)
         usage(argv);
 
     const char *data = get_inputs(day, year);
+
+    if (NULL == data)
+        usage(argv);
+
     const char_view_t input = {.data = data, .len = strlen(data)};
 
-    if (!part || part == 1)
+    if (NULL != (day_fns = get_day(year, day)))
     {
-        if (NULL != (fn = get_fn(year, day, 1)) && NULL != *fn)
+        if ((!part || part == 1) && day_fns->part1)
         {
-            int ret = (*fn)(&input);
-            printf("%d day %d part 1: %d\n", year, day, ret);
+            int ret = day_fns->part1(&input);
+            printf("%d day %d %s part 1: %d\n", year, day, day_fns->name, ret);
+        }
+
+        if ((!part || part == 2) && day_fns->part2)
+        {
+            int ret = day_fns->part2(&input);
+            printf("%d day %d %s part 2: %d\n", year, day, day_fns->name, ret);
         }
     }
-
-    if (!part || part == 2)
-    {
-        if (NULL != (fn = get_fn(year, day, 2)) && NULL != *fn)
-        {
-            int ret = (*fn)(&input);
-            printf("%d day %d part 2: %d\n", year, day, ret);
-        }
-    }
-
 
     return 0;
 }
