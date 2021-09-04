@@ -1,14 +1,23 @@
-.PHONY: aoclib clean_all build_all c cpp rust
+.PHONY: aoclib aoclib-dbg clean_all build_all c cpp rust
 
 PREFIX?=/usr/local
 
 rust/target/release/libaocdata.so rust/aocdata/adventofcode.h:
 	cargo build --manifest-path rust/Cargo.toml -p aocdata --release
 
+rust/target/debug/libaocdata.so:
+	cargo build --manifest-path rust/Cargo.toml -p aocdata
+
 aoclib: rust/target/release/libaocdata.so rust/aocdata/adventofcode.h
+
+aoclib-dbg: rust/target/debug/libaocdata.so
 
 install: aoclib
 	install rust/target/release/libaocdata.so $(PREFIX)/lib
+	install rust/aocdata/adventofcode.h $(PREFIX)/include
+
+install-dbg: aoclib-dbg
+	install rust/target/debug/libaocdata.so $(PREFIX)/lib
 	install rust/aocdata/adventofcode.h $(PREFIX)/include
 
 uninstall:
