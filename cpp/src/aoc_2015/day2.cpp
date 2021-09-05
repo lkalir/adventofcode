@@ -29,7 +29,7 @@ class Rectangle {
 
     [[nodiscard]] auto surface_area() const -> int
     {
-        return 2 * m_length * m_width + 2 * m_width * m_height + 2 * m_length * m_height;
+        return 2 * (m_length * m_width + m_width * m_height + m_length * m_height);
     }
 
     [[nodiscard]] auto slack() const -> int

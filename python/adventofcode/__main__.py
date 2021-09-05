@@ -1,8 +1,8 @@
 import argparse
 
-from adventofcode.aoc_2015 import AOC2015Day1
+from adventofcode.aoc_2015 import AOC2015Day1, AOC2015Day2
 
-SLNS = {2015: {1: AOC2015Day1}}
+SLNS = {2015: {1: AOC2015Day1, 2: AOC2015Day2}}
 
 
 def main():
