@@ -26,4 +26,13 @@ class AbstractAdventSolution {
     const uint16_t m_year;
 };
 
+template <int day, int year> class AocSolution : public AbstractAdventSolution {
+  public:
+    AocSolution() : AbstractAdventSolution(day, year) {}
+    ~AocSolution() override = default;
+    [[nodiscard]] auto part1(const std::string_view &input) const -> int override;
+    [[nodiscard]] auto part2(const std::string_view &input) const -> int override;
+    [[nodiscard]] auto name() const -> const std::string & override;
+};
+
 #endif

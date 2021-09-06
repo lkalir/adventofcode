@@ -3,7 +3,10 @@ project(adventofcode C CXX)
 
 enable_testing()
 
-add_compile_options("-Wall" "-Wpedantic" "-Wextra" "-Werror" "$<$<CONFIG:RELEASE>:-march=native;>")
+set(CMAKE_C_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall -Wpedantic -Wextra -Werror -march=native")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wpedantic -Wextra -Werror -march=native")
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 

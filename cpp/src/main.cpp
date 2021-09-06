@@ -5,10 +5,13 @@
 #include <stdexcept>
 
 #include <aoc.h>
-#include <aoc_2015/aoc_2015.h>
 
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2015_slns = {
-    std::make_unique<Aoc2015Day1>(), std::make_unique<Aoc2015Day2>()};
+    std::make_unique<AocSolution<1, 2015>>(),
+    std::make_unique<AocSolution<2, 2015>>(),
+    std::make_unique<AocSolution<3, 2015>>(),
+    std::make_unique<AocSolution<4, 2015>>(),
+};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2016_slns = {};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2017_slns = {};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2018_slns = {};

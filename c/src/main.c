@@ -7,7 +7,7 @@
 #include <string.h>
 #include <unistd.h>
 
-static const aoc_day_t *const aoc_2015_fns[25] = {&aoc_2015_day_1};
+static const aoc_day_t *const aoc_2015_fns[25] = {&aoc_2015_day_1, &aoc_2015_day_2};
 static const aoc_day_t *const aoc_2016_fns[25] = {0};
 static const aoc_day_t *const aoc_2017_fns[25] = {0};
 static const aoc_day_t *const aoc_2018_fns[25] = {0};

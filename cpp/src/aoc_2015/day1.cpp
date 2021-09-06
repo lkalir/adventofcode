@@ -1,21 +1,20 @@
-#include "aoc_2015.h"
-
 #include <algorithm>
+#include <aoc.h>
 
 static const std::string day1_name("Not Quite Lisp");
 
-auto Aoc2015Day1::name() const -> const std::string &
+template <> auto AocSolution<1, 2015>::name() const -> const std::string &
 {
     return day1_name;
 }
 
-auto Aoc2015Day1::part1(const std::string_view &input) const -> int
+template <> auto AocSolution<1, 2015>::part1(const std::string_view &input) const -> int
 {
     auto up = std::count(input.begin(), input.end(), '(');
     return 2 * up - input.length();
 }
 
-auto Aoc2015Day1::part2(const std::string_view &input) const -> int
+template <> auto AocSolution<1, 2015>::part2(const std::string_view &input) const -> int
 {
     int floor = 0;
 

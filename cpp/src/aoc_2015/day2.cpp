@@ -1,11 +1,10 @@
-#include "aoc_2015.h"
-
 #include <algorithm>
+#include <aoc.h>
 #include <cstdio>
 #include <numeric>
 #include <string>
 #include <string_view>
-#include <tuple>
+#include <utility>
 
 /// Technically atoi should really be astoin, therefore, this should thus be stviastoin
 static auto svatoi(const std::string_view &a) -> int
@@ -35,7 +34,7 @@ class Rectangle {
     [[nodiscard]] auto slack() const -> int
     {
         auto dims = this->get_smallest_sides();
-        return std::get<0>(dims) * std::get<1>(dims);
+        return dims.first * dims.second;
     }
 
     [[nodiscard]] auto volume() const -> int { return m_length * m_width * m_height; }
@@ -43,7 +42,7 @@ class Rectangle {
     [[nodiscard]] auto bow() const -> int
     {
         auto dims = this->get_smallest_sides();
-        return 2 * (std::get<0>(dims) + std::get<1>(dims));
+        return 2 * (dims.first + dims.second);
     }
 
     static auto from_sv(const std::string_view &input) -> const std::vector<Rectangle>
@@ -69,11 +68,11 @@ class Rectangle {
     }
 
   private:
-    [[nodiscard]] auto get_smallest_sides() const -> std::tuple<int, int>
+    [[nodiscard]] auto get_smallest_sides() const -> std::pair<int, int>
     {
         std::array dims = {m_length, m_width, m_height};
         std::sort(dims.begin(), dims.end());
-        return std::make_tuple(dims[0], dims[1]);
+        return std::make_pair(dims[0], dims[1]);
     }
     const int m_length;
     const int m_width;
@@ -82,7 +81,7 @@ class Rectangle {
 
 static const std::string day2_name("I Was Told There Would Be No Math");
 
-auto Aoc2015Day2::name() const -> const std::string &
+template <> auto AocSolution<2, 2015>::name() const -> const std::string &
 {
     return day2_name;
 }
@@ -97,14 +96,14 @@ static auto part2(int x, const Rectangle &rect) -> int
     return x + rect.volume() + rect.bow();
 }
 
-auto Aoc2015Day2::part1(const std::string_view &input) const -> int
+template <> auto AocSolution<2, 2015>::part1(const std::string_view &input) const -> int
 {
     auto rects = Rectangle::from_sv(input);
     auto sum = 0;
     return std::accumulate(rects.begin(), rects.end(), sum, ::part1);
 }
 
-auto Aoc2015Day2::part2(const std::string_view &input) const -> int
+template <> auto AocSolution<2, 2015>::part2(const std::string_view &input) const -> int
 {
     auto rects = Rectangle::from_sv(input);
     auto sum = 0;

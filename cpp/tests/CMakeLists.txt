@@ -13,6 +13,7 @@ foreach(ONE_BENCH_CPP ${ALL_BENCH_CPP})
     benchmark
     aoc
     aocdata
+    OpenSSL::SSL
     ${CMAKE_THREAD_LIBS_INIT}
   )
 endforeach()
@@ -69,6 +70,7 @@ foreach(ONE_TEST_CPP ${ALL_TEST_CPP})
     gtest
     aoc
     aocdata
+    OpenSSL::SSL
     ${CMAKE_THREAD_LIBS_INIT}
   )
 

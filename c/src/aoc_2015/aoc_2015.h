@@ -8,6 +8,7 @@ extern "C" {
 #include <aoc.h>
 
 extern const aoc_day_t aoc_2015_day_1;
+extern const aoc_day_t aoc_2015_day_2;
 
 #ifdef __cplusplus
 }
