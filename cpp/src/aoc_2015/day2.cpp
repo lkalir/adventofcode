@@ -2,7 +2,7 @@
 
 #include <algorithm>
 #include <cstdio>
-#include <iostream>
+#include <numeric>
 #include <string>
 #include <string_view>
 #include <tuple>
@@ -87,20 +87,26 @@ auto Aoc2015Day2::name() const -> const std::string &
     return day2_name;
 }
 
+static auto part1(int x, const Rectangle &rect) -> int
+{
+    return x + rect.surface_area() + rect.slack();
+}
+
+static auto part2(int x, const Rectangle &rect) -> int
+{
+    return x + rect.volume() + rect.bow();
+}
+
 auto Aoc2015Day2::part1(const std::string_view &input) const -> int
 {
     auto rects = Rectangle::from_sv(input);
     auto sum = 0;
-    std::for_each(rects.begin(), rects.end(),
-                  [&sum](const Rectangle &rect) { sum += rect.surface_area() + rect.slack(); });
-    return sum;
+    return std::accumulate(rects.begin(), rects.end(), sum, ::part1);
 }
 
 auto Aoc2015Day2::part2(const std::string_view &input) const -> int
 {
     auto rects = Rectangle::from_sv(input);
     auto sum = 0;
-    std::for_each(rects.begin(), rects.end(),
-                  [&sum](const Rectangle &rect) { sum += rect.volume() + rect.bow(); });
-    return sum;
+    return std::accumulate(rects.begin(), rects.end(), sum, ::part2);
 }
