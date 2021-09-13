@@ -6,6 +6,8 @@
 #include <string_view>
 #include <utility>
 
+#include "util.h"
+
 /// Technically atoi should really be astoin, therefore, this should thus be stviastoin
 static auto svatoi(const std::string_view &a) -> int
 {
@@ -48,11 +50,8 @@ class Rectangle {
     static auto from_sv(const std::string_view &input) -> const std::vector<Rectangle>
     {
         std::vector<Rectangle> rects;
-        size_t pos = 0, pos2 = 0;
 
-        while (input.npos != (pos2 = input.find('\n', pos)))
-        {
-            auto line = input.substr(pos, pos2 - pos);
+        aoc::for_each_line(input, [&](auto line) {
             size_t subpos = 0, subpos2 = 0;
             subpos2 = line.find('x', subpos);
             auto length = svatoi(line.substr(0, subpos2));
@@ -61,8 +60,7 @@ class Rectangle {
             subpos2 = subpos + 1;
             auto height = svatoi(line.substr(subpos2, line.length() - subpos2));
             rects.emplace_back(length, width, height);
-            pos = pos2 + 1;
-        }
+        });
 
         return rects;
     }

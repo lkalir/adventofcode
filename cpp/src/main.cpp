@@ -11,6 +11,7 @@ static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2015_sl
     std::make_unique<AocSolution<2, 2015>>(),
     std::make_unique<AocSolution<3, 2015>>(),
     std::make_unique<AocSolution<4, 2015>>(),
+    std::make_unique<AocSolution<5, 2015>>(),
 };
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2016_slns = {};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2017_slns = {};

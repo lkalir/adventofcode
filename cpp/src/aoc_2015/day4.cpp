@@ -27,18 +27,8 @@ template <> auto AocSolution<4, 2015>::part1(const std::string_view &input) cons
         foo << i;
         foo.str().copy(&inbuf[input.length() - 1], foo.str().length());
         MD5((unsigned char *) inbuf.get(), input.length() + foo.str().length() - 1, md5buf);
-        bool all_zeroes = true;
 
-        for (auto j = 0; j < 2; ++j)
-        {
-            if (md5buf[j] != 0)
-            {
-                all_zeroes = false;
-                break;
-            }
-        }
-
-        if (all_zeroes && (md5buf[2] & 0xF0) == 0)
+        if (md5buf[0] == 0 && md5buf[1] == 0 && (md5buf[2] & 0xF0) == 0)
             return i;
     }
 
@@ -58,23 +48,8 @@ template <> auto AocSolution<4, 2015>::part2(const std::string_view &input) cons
         foo << i;
         foo.str().copy(&inbuf[input.length() - 1], foo.str().length());
         MD5((unsigned char *) inbuf.get(), input.length() + foo.str().length() - 1, md5buf);
-        bool all_zeroes = true;
-/*
-        for (auto k = 0; k < MD5_DIGEST_LENGTH; k++)
-            printf("%02X", md5buf[k]);
 
-        printf("\n");
-*/
-        for (auto j = 0; j < 3; ++j)
-        {
-            if (md5buf[j] != 0)
-            {
-                all_zeroes = false;
-                break;
-            }
-        }
-
-        if (all_zeroes)
+        if (md5buf[0] == 0 && md5buf[1] == 0 && md5buf[2] == 0)
             return i;
     }
 
