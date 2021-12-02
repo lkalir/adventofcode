@@ -365,8 +365,11 @@ pub mod aoc_2021 {
     /// 2021 Day 1: Sonar Sweep
     pub const DAY1: &str = concat!(include_str!("advent-of-code-data/2021/day1.txt"), "\0");
 
+    /// 2021 Day 2: Dive!
+    pub const DAY2: &str = concat!(include_str!("advent-of-code-data/2021/day2.txt"), "\0");
+
     /// Array containing all inputs in chronological order
-    pub const INPUTS: &[&str] = &[DAY1];
+    pub const INPUTS: &[&str] = &[DAY1, DAY2];
 }
 
 #[repr(C)]
