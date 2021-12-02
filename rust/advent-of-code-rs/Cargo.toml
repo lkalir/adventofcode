@@ -1,16 +1,17 @@
 [package]
 name = "advent-of-code-rs"
 version = "0.1.0"
-edition = "2018"
+edition = "2021"
 authors = ["Liam Kalir <liam.kalir@protonmail.com>"]
 
 [dependencies]
 advent-of-code-data-rs = { path = "../advent-of-code-data-rs" }
-clap = "2.33.3"
+clap = "2.34.0"
+itertools = "0.10.1"
 num-traits = "0.2.14"
 
 [dev-dependencies]
-criterion = "0.3.4"
+criterion = "0.3.5"
 
 [[bench]]
 name = "aoc_benches"

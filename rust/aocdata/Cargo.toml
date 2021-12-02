@@ -1,5 +1,5 @@
 [package]
-edition = "2018"
+edition = "2021"
 name = "aocdata"
 version = "0.1.0"
 authors = ["Liam Kalir <liam.kalir@protonmail.com>"]
@@ -10,7 +10,7 @@ build = "build.rs"
 cbindgen = "0.20.0"
 
 [dependencies]
-libc = "0.2.101"
+libc = "0.2.108"
 num-traits = "0.2.14"
 advent-of-code-data-rs = { path = "../advent-of-code-data-rs" }
 

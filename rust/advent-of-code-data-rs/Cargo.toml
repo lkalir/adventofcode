@@ -2,7 +2,7 @@
 name = "advent-of-code-data-rs"
 version = "0.1.0"
 authors = ["Liam Kalir <liam.kalir@protonmail.com>"]
-edition = "2018"
+edition = "2021"
 
 [dependencies]
 num-traits = "0.2.14"

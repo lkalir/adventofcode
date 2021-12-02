@@ -360,6 +360,15 @@ pub mod aoc_2020 {
     ];
 }
 
+/// Input data for Advent of Code 2020
+pub mod aoc_2021 {
+    /// 2021 Day 1: Sonar Sweep
+    pub const DAY1: &str = concat!(include_str!("advent-of-code-data/2021/day1.txt"), "\0");
+
+    /// Array containing all inputs in chronological order
+    pub const INPUTS: &[&str] = &[DAY1];
+}
+
 #[repr(C)]
 #[derive(FromPrimitive, Clone, Copy, PartialEq, Eq)]
 pub enum Year {
@@ -369,6 +378,7 @@ pub enum Year {
     TwentyEighteen,
     TwentyNineteen,
     TwentyTwenty,
+    TwentyTwentyOne,
 }
 
 #[repr(C)]
@@ -410,5 +420,6 @@ pub const fn get_input(year: Year, day: Day) -> &'static str {
         Year::TwentyEighteen => aoc_2018::INPUTS[day as usize - 1],
         Year::TwentyNineteen => aoc_2019::INPUTS[day as usize - 1],
         Year::TwentyTwenty => aoc_2020::INPUTS[day as usize - 1],
+        Year::TwentyTwentyOne => aoc_2021::INPUTS[day as usize - 1],
     }
 }
