@@ -8,19 +8,6 @@
 
 #include "util.h"
 
-/// Technically atoi should really be astoin, therefore, this should thus be stviastoin
-static auto svatoi(const std::string_view &a) -> int
-{
-    auto res = 0;
-
-    for (auto &c : a)
-    {
-        int d = static_cast<int>(c) - '0';
-        res = res * 10 + d;
-    }
-
-    return res;
-}
 
 class Rectangle {
   public:
@@ -54,11 +41,11 @@ class Rectangle {
         aoc::for_each_line(input, [&](auto line) {
             size_t subpos = 0, subpos2 = 0;
             subpos2 = line.find('x', subpos);
-            auto length = svatoi(line.substr(0, subpos2));
+            auto length = aoc::svatoi(line.substr(0, subpos2));
             subpos = line.find('x', subpos2 + 1);
-            auto width = svatoi(line.substr(subpos2 + 1, subpos - subpos2 - 1));
+            auto width = aoc::svatoi(line.substr(subpos2 + 1, subpos - subpos2 - 1));
             subpos2 = subpos + 1;
-            auto height = svatoi(line.substr(subpos2, line.length() - subpos2));
+            auto height = aoc::svatoi(line.substr(subpos2, line.length() - subpos2));
             rects.emplace_back(length, width, height);
         });
 

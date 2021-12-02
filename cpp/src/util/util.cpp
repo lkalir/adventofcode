@@ -1,6 +1,5 @@
 #include <functional>
 #include <string_view>
-#include <thread>
 #include <vector>
 
 namespace aoc {
@@ -15,6 +14,20 @@ auto for_each_line(const std::string_view &lines, const std::function<void(std::
         F(line);
         pos = pos2 + 1;
     }
+}
+
+/// Technically atoi should really be astoin, therefore, this should thus be stviastoin
+auto svatoi(const std::string_view &a) -> int
+{
+    auto res = 0;
+
+    for (auto &c : a)
+    {
+        int d = static_cast<int>(c) - '0';
+        res = res * 10 + d;
+    }
+
+    return res;
 }
 
 } // namespace aoc

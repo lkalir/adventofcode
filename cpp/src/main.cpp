@@ -7,16 +7,16 @@
 #include <aoc.h>
 
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2015_slns = {
-    std::make_unique<AocSolution<1, 2015>>(),
-    std::make_unique<AocSolution<2, 2015>>(),
-    std::make_unique<AocSolution<3, 2015>>(),
-    std::make_unique<AocSolution<4, 2015>>(),
+    std::make_unique<AocSolution<1, 2015>>(), std::make_unique<AocSolution<2, 2015>>(),
+    std::make_unique<AocSolution<3, 2015>>(), std::make_unique<AocSolution<4, 2015>>(),
     std::make_unique<AocSolution<5, 2015>>(),
 };
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2016_slns = {};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2017_slns = {};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2018_slns = {};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2019_slns = {};
+static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2019_slns = {
+    std::make_unique<AocSolution<1, 2019>>(),
+};
 static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2020_slns = {};
 
 class AocDate {
@@ -83,8 +83,9 @@ auto main(int argc, char **argv) -> int
     int day = 0;
     int year = 0;
     int opt = 0;
+    int part = 0;
 
-    while (-1 != (opt = getopt(argc, argv, "d:y:")))
+    while (-1 != (opt = getopt(argc, argv, "d:y:p:")))
     {
         switch (opt)
         {
@@ -94,8 +95,11 @@ auto main(int argc, char **argv) -> int
         case 'y':
             year = atoi(optarg);
             break;
+        case 'p':
+            part = atoi(optarg);
+            break;
         default:
-            std::cout << "Usage: " << argv[0] << " -d day -y year" << std::endl;
+            std::cout << "Usage: " << argv[0] << " -d day -y year [-p part]" << std::endl;
             exit(EXIT_FAILURE);
         }
     }
@@ -105,10 +109,13 @@ auto main(int argc, char **argv) -> int
     try
     {
         auto &fn = get_fn(date);
-        std::cout << date << " " << fn->name() << " part 1: " << fn->part1(fn->inputs())
-                  << std::endl;
-        std::cout << date << " " << fn->name() << " part 2: " << fn->part2(fn->inputs())
-                  << std::endl;
+        if (!part || part == 1)
+            std::cout << date << " " << fn->name() << " part 1: " << fn->part1(fn->inputs())
+                      << std::endl;
+
+        if (!part || part == 2)
+            std::cout << date << " " << fn->name() << " part 2: " << fn->part2(fn->inputs())
+                      << std::endl;
     } catch (const std::exception &e)
     {
         std::cerr << year << " day " << (int) day << ": " << e.what() << std::endl;

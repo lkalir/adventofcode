@@ -71,6 +71,20 @@ TEST(AdventOfCode, Aoc2015Day5Part2)
     ASSERT_EQ(55, dut.part2(data));
 }
 
+TEST(AdventOfCode, Aoc2019Day1Part1)
+{
+    auto dut = AocSolution<1, 2019>();
+    auto data = dut.inputs();
+    ASSERT_EQ(3318632, dut.part1(data));
+}
+
+TEST(AdventOfCode, Aoc2019Day1Part2)
+{
+    auto dut = AocSolution<1, 2019>();
+    auto data = dut.inputs();
+    ASSERT_EQ(4975084, dut.part2(data));
+}
+
 auto main(int argc, char **argv) -> int
 {
     ::testing::InitGoogleTest(&argc, argv);
