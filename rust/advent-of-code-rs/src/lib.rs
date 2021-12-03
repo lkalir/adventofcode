@@ -19,6 +19,9 @@ pub fn get_sln(day: Day, year: Year) -> (SolutionType, SolutionType) {
         (Year::TwentyTwentyOne, Day::One) => {
             (aoc_2021::Day1::part_1(input), aoc_2021::Day1::part_2(input))
         }
+        (Year::TwentyTwentyOne, Day::Two) => {
+            (aoc_2021::Day2::part_1(input), aoc_2021::Day2::part_2(input))
+        }
         _ => todo!(),
     }
 }
