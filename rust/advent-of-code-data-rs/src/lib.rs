@@ -368,8 +368,11 @@ pub mod aoc_2021 {
     /// 2021 Day 2: Dive!
     pub const DAY2: &str = concat!(include_str!("advent-of-code-data/2021/day2.txt"), "\0");
 
+    /// 2021 Day 3: Binary Diagnostic
+    pub const DAY3: &str = concat!(include_str!("advent-of-code-data/2021/day3.txt"), "\0");
+
     /// Array containing all inputs in chronological order
-    pub const INPUTS: &[&str] = &[DAY1, DAY2];
+    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3];
 }
 
 #[repr(C)]
