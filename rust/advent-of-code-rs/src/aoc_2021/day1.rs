@@ -53,14 +53,14 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_2021_day1_part_1() {
+    fn part_1() {
         let input = Day1::get_input();
         let ret = Day1::part_1(input);
         assert_eq!(ret, SolutionType::Uint(1139));
     }
 
     #[test]
-    fn test_2021_day1_part_2() {
+    fn part_2() {
         let input = Day1::get_input();
         let ret = Day1::part_2(input);
         assert_eq!(ret, SolutionType::Uint(1103));

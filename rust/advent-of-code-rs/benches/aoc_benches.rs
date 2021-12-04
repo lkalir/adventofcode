@@ -66,6 +66,20 @@ mod aoc_bench_2021 {
             b.iter(|| aoc_2021::Day2::part_2(contents))
         });
     }
+
+    pub fn day_3_part_1(c: &mut Criterion) {
+        let contents = aoc_2021::Day3::get_input();
+        c.bench_function(&format!("{} part 1", aoc_2021::Day3::get_name()), |b| {
+            b.iter(|| aoc_2021::Day3::part_1(contents))
+        });
+    }
+
+    pub fn day_3_part_2(c: &mut Criterion) {
+        let contents = aoc_2021::Day3::get_input();
+        c.bench_function(&format!("{} part 2", aoc_2021::Day3::get_name()), |b| {
+            b.iter(|| aoc_2021::Day3::part_2(contents))
+        });
+    }
 }
 
 criterion_group!(
@@ -82,6 +96,8 @@ criterion_group!(
     aoc_bench_2021::day_1_part_2,
     aoc_bench_2021::day_2_part_1,
     aoc_bench_2021::day_2_part_2,
+    aoc_bench_2021::day_3_part_1,
+    aoc_bench_2021::day_3_part_2,
 );
 
 criterion_main!(benches_2015, benches_2021);

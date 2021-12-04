@@ -5,6 +5,7 @@ mod aoc_2018;
 mod aoc_2019;
 mod aoc_2020;
 mod aoc_2021;
+mod utils;
 
 use advent_of_code_rs::{get_sln, Solution, SolutionType};
 use clap::{App, Arg};

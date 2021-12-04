@@ -88,14 +88,14 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_2015_day2_part_1() {
+    fn part_1() {
         let input = Day2::get_input();
         let ret = Day2::part_1(input);
         assert_eq!(ret, SolutionType::Uint(1_588_178));
     }
 
     #[test]
-    fn test_2015_day2_part_2() {
+    fn part_2() {
         let input = Day2::get_input();
         let ret = Day2::part_2(input);
         assert_eq!(ret, SolutionType::Uint(3_783_758));
