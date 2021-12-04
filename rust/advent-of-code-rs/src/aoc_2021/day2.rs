@@ -3,6 +3,7 @@ use crate::{
     Solution, SolutionType,
 };
 use advent_of_code_data_rs::get_input;
+use std::hint::unreachable_unchecked;
 
 pub struct Day2;
 
@@ -25,6 +26,7 @@ impl Solution for Day2 {
 
         for line in input.lines() {
             let l: &AsciiBuf<1> = line.to_ascii_buf();
+
             match l[0] {
                 ASCII_D => {
                     let f: &AsciiBuf<6> = line.to_ascii_buf();
@@ -38,7 +40,7 @@ impl Solution for Day2 {
                     let f: &AsciiBuf<4> = line.to_ascii_buf();
                     depth -= f.as_int(f.len() - 1) as i32;
                 }
-                _ => {}
+                _ => unsafe { unreachable_unchecked() },
             }
         }
 
@@ -67,7 +69,7 @@ impl Solution for Day2 {
                     let f: &AsciiBuf<4> = line.to_ascii_buf();
                     aim -= f.as_int(f.len() - 1) as i32;
                 }
-                _ => {}
+                _ => unsafe { unreachable_unchecked() },
             }
         }
 

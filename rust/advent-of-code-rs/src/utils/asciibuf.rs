@@ -1,5 +1,3 @@
-use num_traits::PrimInt;
-
 pub const ASCII_D: u8 = 0x64;
 pub const ASCII_F: u8 = 0x66;
 pub const ASCII_U: u8 = 0x75;
@@ -19,10 +17,28 @@ impl<const K: usize> AsciiBuf<K> {
         self[idx] - ASCII_0
     }
 
-    pub fn as_dec_ascii<T: PrimInt>(&self) -> T {
-        self.vals.iter().fold(T::zero(), |ret, i| {
-            ret * T::from(10).unwrap() + T::from(i - ASCII_0).unwrap()
-        })
+    pub fn as_dec_ascii<T>(&self) -> T
+    where
+        T: From<u8> + std::ops::Mul<T, Output = T> + std::ops::Add<T, Output = T>,
+    {
+        self.vals
+            .iter()
+            .fold(0.into(), |ret, i| ret * 10.into() + (i - ASCII_0).into())
+    }
+
+    pub fn as_bin_ascii<T>(&self) -> T
+    where
+        T: From<u8>
+            + std::ops::Mul<T, Output = T>
+            + std::ops::Shl<usize, Output = T>
+            + std::ops::BitOr<T, Output = T>,
+    {
+        self.vals
+            .iter()
+            .enumerate()
+            .fold(0.into(), |ret, (idx, i)| {
+                ret | (T::from(i - ASCII_0) << (K - 1 - idx))
+            })
     }
 }
 impl<const K: usize> std::ops::Index<usize> for AsciiBuf<K> {

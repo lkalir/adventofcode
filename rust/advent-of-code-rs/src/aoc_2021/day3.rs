@@ -97,7 +97,10 @@ impl Solution for Day3 {
     fn part_2(input: &str) -> SolutionType {
         let mut vals: Vec<_> = input
             .lines()
-            .map(|line| u16::from_str_radix(line, 2).unwrap())
+            .map(|line| {
+                let l: &AsciiBuf<12> = line.to_ascii_buf();
+                l.as_bin_ascii()
+            })
             .collect();
 
         vals.sort_unstable();
