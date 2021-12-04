@@ -1,3 +1,4 @@
+use num_traits::PrimInt;
 use std::ops::Index;
 
 pub const ASCII_D: u8 = 0x64;
@@ -18,8 +19,13 @@ impl<const K: usize> AsciiBuf<K> {
     pub fn as_int(&self, idx: usize) -> u8 {
         self[idx] - ASCII_0
     }
-}
 
+    pub fn as_dec_ascii<T: PrimInt>(&self) -> T {
+        self.vals.iter().fold(T::zero(), |ret, i| {
+            ret * T::from(10).unwrap() + T::from(i - ASCII_0).unwrap()
+        })
+    }
+}
 impl<const K: usize> Index<usize> for AsciiBuf<K> {
     type Output = u8;
 

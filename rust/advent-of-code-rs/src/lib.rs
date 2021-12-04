@@ -22,6 +22,7 @@ pub fn get_sln(day: Day, year: Year) -> (SolutionType, SolutionType) {
         (Year::TwentyTwentyOne, Day::One) => add_sln!(aoc_2021, Day1, input),
         (Year::TwentyTwentyOne, Day::Two) => add_sln!(aoc_2021, Day2, input),
         (Year::TwentyTwentyOne, Day::Three) => add_sln!(aoc_2021, Day3, input),
+        (Year::TwentyTwentyOne, Day::Four) => add_sln!(aoc_2021, Day4, input),
         _ => todo!(),
     }
 }
