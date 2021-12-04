@@ -1,5 +1,5 @@
 use crate::{
-    utils::{AsciiBuf, AsciiBuffable, ASCII_D, ASCII_F, ASCII_U},
+    utils::asciibuf::{AsciiBuf, AsciiBuffable, ASCII_D, ASCII_F, ASCII_U},
     Solution, SolutionType,
 };
 use advent_of_code_data_rs::get_input;

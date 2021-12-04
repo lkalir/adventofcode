@@ -1,8 +1,5 @@
-use crate::Solution;
-use crate::SolutionType;
+use crate::{utils::circularbuf::CircularBuf, Solution, SolutionType};
 use advent_of_code_data_rs::get_input;
-
-use itertools::Itertools;
 
 pub struct Day1 {}
 
@@ -33,17 +30,23 @@ impl Solution for Day1 {
     }
 
     fn part_2(input: &str) -> SolutionType {
-        let mut last = u32::MAX;
-        let ret = input
-            .lines()
-            .map(|line| line.parse::<u32>().unwrap())
-            .tuple_windows::<(_, _, _)>()
-            .fold(0, |acc, depth| {
-                let d = depth.0 + depth.1 + depth.2;
-                let ret = if d > last { acc + 1 } else { acc };
-                last = d;
-                ret
-            });
+        let mut buf = CircularBuf::<u32, 3>::new();
+        let mut vals = input.lines().map(|line| line.parse::<u32>().unwrap());
+
+        for val in vals.by_ref().take(3) {
+            buf.insert(val);
+        }
+
+        let mut last: u32 = buf.iter().sum();
+
+        let ret = vals.fold(0, |acc, val| {
+            let popped = buf.insert(val);
+            let depth = last - popped + val;
+            let ret = if depth > last { acc + 1 } else { acc };
+            last = depth;
+            ret
+        });
+
         SolutionType::Uint(ret)
     }
 }

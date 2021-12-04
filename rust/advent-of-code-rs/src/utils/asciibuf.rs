@@ -1,5 +1,4 @@
 use num_traits::PrimInt;
-use std::ops::Index;
 
 pub const ASCII_D: u8 = 0x64;
 pub const ASCII_F: u8 = 0x66;
@@ -26,7 +25,7 @@ impl<const K: usize> AsciiBuf<K> {
         })
     }
 }
-impl<const K: usize> Index<usize> for AsciiBuf<K> {
+impl<const K: usize> std::ops::Index<usize> for AsciiBuf<K> {
     type Output = u8;
 
     fn index(&self, index: usize) -> &Self::Output {
