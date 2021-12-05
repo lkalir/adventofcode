@@ -5,9 +5,10 @@ mod aoc_2018;
 mod aoc_2019;
 mod aoc_2020;
 mod aoc_2021;
+mod macros;
 mod utils;
 
-use advent_of_code_rs::{get_sln, Solution, SolutionType};
+use advent_of_code_rs::{get_sln, Solution, SolutionType, SolutionYear};
 use clap::{App, Arg};
 use num_traits::FromPrimitive;
 
@@ -24,8 +25,11 @@ fn main() {
         if let (Some(day), Some(year)) =
             (FromPrimitive::from_u8(day), FromPrimitive::from_u16(year))
         {
-            let (p1, p2) = get_sln(day, year);
-            println!("{:?} {:?}", p1, p2);
+            if let Some((p1, p2)) = get_sln(day, year) {
+                println!("{:?} {:?}", p1, p2);
+            } else {
+                println!("Not yet implemented");
+            }
         }
     }
 }

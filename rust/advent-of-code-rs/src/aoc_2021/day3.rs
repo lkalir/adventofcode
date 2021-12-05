@@ -83,7 +83,8 @@ impl Solution for Day3 {
         let x = get_input(
             advent_of_code_data_rs::Year::TwentyTwentyOne,
             advent_of_code_data_rs::Day::Three,
-        );
+        )
+        .unwrap();
         &x[..x.len() - 1]
     }
 

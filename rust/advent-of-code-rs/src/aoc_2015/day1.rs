@@ -1,10 +1,8 @@
+use crate::{Solution, SolutionType};
+use advent_of_code_data_rs::get_input;
 use std::hint::unreachable_unchecked;
 
-use crate::Solution;
-use crate::SolutionType;
-use advent_of_code_data_rs::get_input;
-
-pub struct Day1 {}
+pub struct Day1;
 
 impl Solution for Day1 {
     fn get_name() -> &'static str {
@@ -15,7 +13,8 @@ impl Solution for Day1 {
         let x = get_input(
             advent_of_code_data_rs::Year::TwentyFifteen,
             advent_of_code_data_rs::Day::One,
-        );
+        )
+        .unwrap();
         &x[..x.len() - 1]
     }
 

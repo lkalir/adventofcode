@@ -1,3 +1,5 @@
+use advent_of_code_data_rs::Day;
+
 #[derive(Eq, PartialEq, Debug)]
 pub enum SolutionType {
     Int(i32),
@@ -11,4 +13,6 @@ pub trait Solution {
     fn part_2(input: &str) -> SolutionType;
 }
 
-
+pub trait SolutionYear {
+    fn get_sln(day: Day) -> Option<(SolutionType, SolutionType)>;
+}

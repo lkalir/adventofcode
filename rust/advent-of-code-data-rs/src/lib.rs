@@ -374,8 +374,11 @@ pub mod aoc_2021 {
     /// 2021 Day 4: Giant Squid
     pub const DAY4: &str = concat!(include_str!("advent-of-code-data/2021/day4.txt"), "\0");
 
+    /// 2021 Day 5: Hydrothermal Venture
+    pub const DAY5: &str = concat!(include_str!("advent-of-code-data/2021/day5.txt"), "\0");
+
     /// Array containing all inputs in chronological order
-    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3, DAY4];
+    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3, DAY4, DAY5];
 }
 
 #[repr(C)]
@@ -420,15 +423,31 @@ pub enum Day {
     TwentyFive,
 }
 
+/// Array containing refrences to all inputs slices in chronological order
+const INPUTS: &[&[&str]] = &[
+    aoc_2015::INPUTS,
+    aoc_2016::INPUTS,
+    aoc_2017::INPUTS,
+    aoc_2018::INPUTS,
+    aoc_2019::INPUTS,
+    aoc_2020::INPUTS,
+    aoc_2021::INPUTS,
+];
+
 /// Get the input for the requested day and year
-pub const fn get_input(year: Year, day: Day) -> &'static str {
-    match year {
-        Year::TwentyFifteen => aoc_2015::INPUTS[day as usize - 1],
-        Year::TwentySixteen => aoc_2016::INPUTS[day as usize - 1],
-        Year::TwentySeventeen => aoc_2017::INPUTS[day as usize - 1],
-        Year::TwentyEighteen => aoc_2018::INPUTS[day as usize - 1],
-        Year::TwentyNineteen => aoc_2019::INPUTS[day as usize - 1],
-        Year::TwentyTwenty => aoc_2020::INPUTS[day as usize - 1],
-        Year::TwentyTwentyOne => aoc_2021::INPUTS[day as usize - 1],
+pub const fn get_input(year: Year, day: Day) -> Option<&'static str> {
+    let y = year as usize - 2015;
+    let d = day as usize - 1;
+
+    if y > INPUTS.len() {
+        return None;
     }
+
+    let inputs = INPUTS[y];
+
+    if d > inputs.len() {
+        return None;
+    }
+
+    Some(inputs[d])
 }
