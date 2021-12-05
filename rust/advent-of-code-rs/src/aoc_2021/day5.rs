@@ -120,6 +120,7 @@ impl Solution for Day5 {
 
     fn part_1(input: &str) -> SolutionType {
         let mut points = [[0u16; 1000]; 1000];
+        let mut cnt = 0;
 
         for (start, end) in input
             .lines()
@@ -131,15 +132,19 @@ impl Solution for Day5 {
         {
             for p in start.line_iter(&end) {
                 points[p.y as usize][p.x as usize] += 1;
+
+                if points[p.y as usize][p.x as usize] == 2 {
+                    cnt += 1;
+                }
             }
         }
 
-        let ret = points.iter().flatten().filter(|&&val| val >= 2).count();
-        SolutionType::Uint(ret as _)
+        SolutionType::Uint(cnt)
     }
 
     fn part_2(input: &str) -> SolutionType {
         let mut points = [[0u16; 1000]; 1000];
+        let mut cnt = 0;
 
         for (start, end) in input.lines().map(|line| {
             let (first, last) = line.split_once(" -> ").unwrap();
@@ -147,11 +152,14 @@ impl Solution for Day5 {
         }) {
             for p in start.line_iter(&end) {
                 points[p.y as usize][p.x as usize] += 1;
+
+                if points[p.y as usize][p.x as usize] == 2 {
+                    cnt += 1;
+                }
             }
         }
 
-        let ret = points.iter().flatten().filter(|&&val| val >= 2).count();
-        SolutionType::Uint(ret as _)
+        SolutionType::Uint(cnt)
     }
 }
 
