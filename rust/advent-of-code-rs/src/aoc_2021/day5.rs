@@ -3,7 +3,6 @@ use crate::{
     Solution, SolutionType,
 };
 use advent_of_code_data_rs::get_input;
-use fnv::FnvHashMap as HashMap;
 
 pub struct Day5;
 
@@ -64,10 +63,6 @@ impl Point {
             done: false,
         }
     }
-
-    pub fn as_tuple(&self) -> (u16, u16) {
-        (self.x, self.y)
-    }
 }
 
 struct PointIter {
@@ -124,7 +119,8 @@ impl Solution for Day5 {
     }
 
     fn part_1(input: &str) -> SolutionType {
-        let mut points: HashMap<(u16, u16), u16> = HashMap::default();
+        let mut points = [[0u16; 1000]; 1000];
+
         for (start, end) in input
             .lines()
             .map(|line| {
@@ -134,26 +130,27 @@ impl Solution for Day5 {
             .filter(|(first, last)| first.is_staight(last))
         {
             for p in start.line_iter(&end) {
-                *points.entry(p.as_tuple()).or_insert(0) += 1;
+                points[p.y as usize][p.x as usize] += 1;
             }
         }
 
-        let ret = points.iter().filter(|(_, &val)| val >= 2).count();
+        let ret = points.iter().flatten().filter(|&&val| val >= 2).count();
         SolutionType::Uint(ret as _)
     }
 
     fn part_2(input: &str) -> SolutionType {
-        let mut points: HashMap<(u16, u16), u16> = HashMap::default();
+        let mut points = [[0u16; 1000]; 1000];
+
         for (start, end) in input.lines().map(|line| {
             let (first, last) = line.split_once(" -> ").unwrap();
             (Point::new(first), Point::new(last))
         }) {
             for p in start.line_iter(&end) {
-                *points.entry(p.as_tuple()).or_insert(0) += 1;
+                points[p.y as usize][p.x as usize] += 1;
             }
         }
 
-        let ret = points.iter().filter(|(_, &val)| val >= 2).count();
+        let ret = points.iter().flatten().filter(|&&val| val >= 2).count();
         SolutionType::Uint(ret as _)
     }
 }
