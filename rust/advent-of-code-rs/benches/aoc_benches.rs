@@ -48,6 +48,9 @@ mod aoc_bench_2021 {
 
     part1!(day_4_part_1, aoc_2021::Day4);
     part2!(day_4_part_2, aoc_2021::Day4);
+
+    part1!(day_5_part_1, aoc_2021::Day5);
+    part2!(day_5_part_2, aoc_2021::Day5);
 }
 
 criterion_group!(
@@ -68,6 +71,8 @@ criterion_group!(
     aoc_bench_2021::day_3_part_2,
     aoc_bench_2021::day_4_part_1,
     aoc_bench_2021::day_4_part_2,
+    aoc_bench_2021::day_5_part_1,
+    aoc_bench_2021::day_5_part_2,
 );
 
 criterion_main!(benches_2015, benches_2021);
