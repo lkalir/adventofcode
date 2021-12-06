@@ -4,6 +4,7 @@ use advent_of_code_data_rs::Day;
 pub enum SolutionType {
     Int(i32),
     Uint(u32),
+    Usize(usize),
 }
 
 pub trait Solution {
