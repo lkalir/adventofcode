@@ -7,6 +7,7 @@ mod day3;
 mod day4;
 mod day5;
 mod day6;
+mod day7;
 
 pub use day1::Day1;
 pub use day2::Day2;
@@ -14,6 +15,7 @@ pub use day3::Day3;
 pub use day4::Day4;
 pub use day5::Day5;
 pub use day6::Day6;
+pub use day7::Day7;
 
 pub struct Aoc2021;
 
@@ -29,6 +31,7 @@ impl SolutionYear for Aoc2021 {
             Day::Four => add_sln!(Day4, input),
             Day::Five => add_sln!(Day5, input),
             Day::Six => add_sln!(Day6, input),
+            Day::Seven => add_sln!(Day7, input),
             _ => None,
         }
     }

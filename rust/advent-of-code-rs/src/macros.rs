@@ -16,7 +16,6 @@ macro_rules! ascii_buf_dec {
             }
         )+
             _ => unsafe { std::hint::unreachable_unchecked() }
-
         }
     };
 }
