@@ -1,7 +1,15 @@
-use crate::{utils::circularbuf::CircularBuf, Solution, SolutionType};
+use std::hint::unreachable_unchecked;
+
+use crate::{
+    utils::{
+        asciibuf::{AsciiBuf, AsciiBuffable},
+        circularbuf::CircularBuf,
+    },
+    Solution, SolutionType,
+};
 use advent_of_code_data_rs::get_input;
 
-pub struct Day1 {}
+pub struct Day1;
 
 impl Solution for Day1 {
     fn get_name() -> &'static str {
@@ -21,7 +29,17 @@ impl Solution for Day1 {
         let mut last = u32::MAX;
         let ret = input
             .lines()
-            .map(|line| line.parse::<u32>().unwrap())
+            .map(|line| match line.len() {
+                3 => {
+                    let l: &AsciiBuf<3> = line.to_ascii_buf();
+                    l.as_dec_ascii()
+                }
+                4 => {
+                    let l: &AsciiBuf<4> = line.to_ascii_buf();
+                    l.as_dec_ascii()
+                }
+                _ => unsafe { unreachable_unchecked() },
+            })
             .fold(0, |acc, line| {
                 let ret = if line > last { acc + 1 } else { acc };
                 last = line;
@@ -32,7 +50,17 @@ impl Solution for Day1 {
 
     fn part_2(input: &str) -> SolutionType {
         let mut buf = CircularBuf::<u32, 3>::new();
-        let mut vals = input.lines().map(|line| line.parse::<u32>().unwrap());
+        let mut vals = input.lines().map(|line| match line.len() {
+            3 => {
+                let l: &AsciiBuf<3> = line.to_ascii_buf();
+                l.as_dec_ascii()
+            }
+            4 => {
+                let l: &AsciiBuf<4> = line.to_ascii_buf();
+                l.as_dec_ascii()
+            }
+            _ => unsafe { unreachable_unchecked() },
+        });
 
         for val in vals.by_ref().take(3) {
             buf.insert(val);

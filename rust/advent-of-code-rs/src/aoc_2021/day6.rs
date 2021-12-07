@@ -1,10 +1,27 @@
-use crate::{
-    utils::asciibuf::{AsciiBuf, AsciiBuffable},
-    Solution, SolutionType,
-};
+use crate::{utils::asciibuf::ASCII_0, Solution, SolutionType};
 use advent_of_code_data_rs::get_input;
+use std::intrinsics::copy;
 
 pub struct Day6;
+
+// For some reason this results in faster codegen than const generics
+fn simulate_fish(input: &str, cycles: usize) -> SolutionType {
+    let mut fishes = [0; 9];
+
+    for (_, num) in input.chars().enumerate().filter(|(idx, _)| idx % 2 == 0) {
+        let val = num as usize - ASCII_0 as usize;
+        fishes[val] += 1;
+    }
+
+    for _ in 0..cycles {
+        let babies = fishes[0];
+        unsafe { copy(fishes[1..9].as_ptr(), fishes[0..8].as_mut_ptr(), 8) };
+        fishes[8] = babies;
+        fishes[6] += babies;
+    }
+
+    SolutionType::Usize(fishes.iter().sum())
+}
 
 impl Solution for Day6 {
     fn get_name() -> &'static str {
@@ -21,39 +38,11 @@ impl Solution for Day6 {
     }
 
     fn part_1(input: &str) -> SolutionType {
-        let mut fishes = [0; 9];
-
-        for num in input.split(',') {
-            let l: &AsciiBuf<1> = num.to_ascii_buf();
-            let val: usize = l.as_dec_ascii();
-            fishes[val] += 1;
-        }
-
-        for _ in 0..80 {
-            let babies = fishes[0];
-            fishes.rotate_left(1);
-            fishes[6] += babies;
-        }
-
-        SolutionType::Usize(fishes.iter().sum())
+        simulate_fish(input, 80)
     }
 
     fn part_2(input: &str) -> SolutionType {
-        let mut fishes = [0; 9];
-
-        for num in input.split(',') {
-            let l: &AsciiBuf<1> = num.to_ascii_buf();
-            let val: usize = l.as_dec_ascii();
-            fishes[val] += 1;
-        }
-
-        for _ in 0..256 {
-            let babies = fishes[0];
-            fishes.rotate_left(1);
-            fishes[6] += babies;
-        }
-
-        SolutionType::Usize(fishes.iter().sum())
+        simulate_fish(input, 256)
     }
 }
 
