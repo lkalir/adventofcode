@@ -380,8 +380,11 @@ pub mod aoc_2021 {
     /// 2021 Day 6: Lanternfish
     pub const DAY6: &str = concat!(include_str!("advent-of-code-data/2021/day6.txt"), "\0");
 
+    /// 2021 Day 7: The Treachery of Whales
+    pub const DAY7: &str = concat!(include_str!("advent-of-code-data/2021/day7.txt"), "\0");
+
     /// Array containing all inputs in chronological order
-    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3, DAY4, DAY5, DAY6];
+    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7];
 }
 
 #[repr(C)]
