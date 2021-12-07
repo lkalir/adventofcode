@@ -1,4 +1,5 @@
 use crate::{
+    macros::ascii_buf_dec,
     utils::asciibuf::{AsciiBuf, AsciiBuffable},
     Solution, SolutionType,
 };
@@ -28,17 +29,7 @@ impl Bingo {
         let mut items = [[(0, false); 5]; 5];
         for (row, line) in items.iter_mut().zip(board.skip(1).take(5)) {
             for (entry, val) in row.iter_mut().zip(line.split_whitespace()) {
-                entry.0 = match val.len() {
-                    1 => {
-                        let buf: &AsciiBuf<1> = val.to_ascii_buf();
-                        buf.as_dec_ascii::<u8>()
-                    }
-                    2 => {
-                        let buf: &AsciiBuf<2> = val.to_ascii_buf();
-                        buf.as_dec_ascii::<u8>()
-                    }
-                    _ => unreachable!(),
-                };
+                entry.0 = ascii_buf_dec!(val, val.len(), 1, 2);
             }
         }
         Self { items }
@@ -129,17 +120,11 @@ impl Solution for Day4 {
     fn part_1(input: &str) -> SolutionType {
         let mut it = input.lines();
 
-        let draws = it.next().unwrap().split(',').map(|draw| match draw.len() {
-            1 => {
-                let buf: &AsciiBuf<1> = draw.to_ascii_buf();
-                buf.as_dec_ascii::<u8>()
-            }
-            2 => {
-                let buf: &AsciiBuf<2> = draw.to_ascii_buf();
-                buf.as_dec_ascii::<u8>()
-            }
-            _ => unreachable!(),
-        });
+        let draws = it
+            .next()
+            .unwrap()
+            .split(',')
+            .map(|draw| ascii_buf_dec!(draw, draw.len(), 1, 2));
 
         let mut boards: Vec<_> = it.chunks(6).into_iter().map(Bingo::new).collect();
 
@@ -161,17 +146,11 @@ impl Solution for Day4 {
     fn part_2(input: &str) -> SolutionType {
         let mut it = input.lines();
 
-        let draws = it.next().unwrap().split(',').map(|draw| match draw.len() {
-            1 => {
-                let buf: &AsciiBuf<1> = draw.to_ascii_buf();
-                buf.as_dec_ascii::<u8>()
-            }
-            2 => {
-                let buf: &AsciiBuf<2> = draw.to_ascii_buf();
-                buf.as_dec_ascii::<u8>()
-            }
-            _ => unreachable!(),
-        });
+        let draws = it
+            .next()
+            .unwrap()
+            .split(',')
+            .map(|draw| ascii_buf_dec!(draw, draw.len(), 1, 2));
 
         let mut boards: Vec<_> = it.chunks(6).into_iter().map(Bingo::new).collect();
 

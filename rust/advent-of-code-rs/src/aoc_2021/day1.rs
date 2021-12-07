@@ -1,6 +1,7 @@
 use std::hint::unreachable_unchecked;
 
 use crate::{
+    macros::ascii_buf_dec,
     utils::{
         asciibuf::{AsciiBuf, AsciiBuffable},
         circularbuf::CircularBuf,
@@ -29,17 +30,7 @@ impl Solution for Day1 {
         let mut last = u32::MAX;
         let ret = input
             .lines()
-            .map(|line| match line.len() {
-                3 => {
-                    let l: &AsciiBuf<3> = line.to_ascii_buf();
-                    l.as_dec_ascii()
-                }
-                4 => {
-                    let l: &AsciiBuf<4> = line.to_ascii_buf();
-                    l.as_dec_ascii()
-                }
-                _ => unsafe { unreachable_unchecked() },
-            })
+            .map(|line| ascii_buf_dec!(line, line.len(), 3, 4))
             .fold(0, |acc, line| {
                 let ret = if line > last { acc + 1 } else { acc };
                 last = line;

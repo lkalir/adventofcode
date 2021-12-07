@@ -41,6 +41,7 @@ impl<const K: usize> AsciiBuf<K> {
             })
     }
 }
+
 impl<const K: usize> std::ops::Index<usize> for AsciiBuf<K> {
     type Output = u8;
 

@@ -1,4 +1,5 @@
 use crate::{
+    macros::ascii_buf_dec,
     utils::asciibuf::{AsciiBuf, AsciiBuffable},
     Solution, SolutionType,
 };
@@ -15,37 +16,8 @@ impl Point {
     pub fn new(coords: impl AsRef<str>) -> Self {
         let (x, y) = coords.as_ref().split_once(",").unwrap();
 
-        let x = match x.len() {
-            1 => {
-                let l: &AsciiBuf<1> = x.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            2 => {
-                let l: &AsciiBuf<2> = x.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            3 => {
-                let l: &AsciiBuf<3> = x.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            _ => unreachable!(),
-        };
-
-        let y = match y.len() {
-            1 => {
-                let l: &AsciiBuf<1> = y.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            2 => {
-                let l: &AsciiBuf<2> = y.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            3 => {
-                let l: &AsciiBuf<3> = y.to_ascii_buf();
-                l.as_dec_ascii()
-            }
-            _ => unreachable!(),
-        };
+        let x = ascii_buf_dec!(x, x.len(), 1, 2, 3);
+        let y = ascii_buf_dec!(y, y.len(), 1, 2, 3);
 
         Self { x, y }
     }
