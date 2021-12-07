@@ -1,5 +1,6 @@
-#include <aoc.h>
 #include <stddef.h>
+
+#include "aocslns/aocdefs.h"
 
 static int aoc_2015_day_1_part_1(const char_view_t *input)
 {

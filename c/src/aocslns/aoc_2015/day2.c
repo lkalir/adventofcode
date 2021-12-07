@@ -1,8 +1,9 @@
-#include <aoc.h>
 #include <stddef.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+
+#include "aocslns/aocdefs.h"
 
 /*
 #define SWAP(x, y) \
@@ -27,6 +28,7 @@ static void smallest(int ret[2], int length, int width, int height)
     ret[1] = width;
 }
 */
+
 static int surface_area(int length, int width, int height)
 {
     return 2 * (length * width + length * height + width * height);

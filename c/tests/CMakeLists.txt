@@ -12,7 +12,7 @@ foreach(ONE_BENCH_CPP ${ALL_BENCH_CPP})
   target_link_libraries(
     ${TARGET_NAME}
     benchmark
-    aoc
+    Aoc::Aocslns
     aocdata
     ${CMAKE_THREAD_LIBS_INIT}
   )
@@ -69,7 +69,7 @@ foreach(ONE_TEST_CPP ${ALL_TEST_CPP})
   target_link_libraries(
     ${TARGET_NAME}
     gtest
-    aoc
+    Aoc::Aocslns
     aocdata
     ${CMAKE_THREAD_LIBS_INIT}
   )
