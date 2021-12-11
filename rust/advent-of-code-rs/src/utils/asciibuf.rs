@@ -3,6 +3,9 @@ pub const ASCII_F: u8 = 0x66;
 pub const ASCII_U: u8 = 0x75;
 pub const ASCII_0: u8 = 0x30;
 
+#[allow(non_upper_case_globals)]
+pub const ASCII_a: u8 = 0x61;
+
 #[derive(PartialEq, Eq, Clone, Copy)]
 pub struct AsciiBuf<const K: usize> {
     vals: [u8; K],
