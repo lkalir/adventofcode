@@ -386,8 +386,19 @@ pub mod aoc_2021 {
     /// 2021 Day 8: Seven Segment Search
     pub const DAY8: &str = concat!(include_str!("advent-of-code-data/2021/day8.txt"), "\0");
 
+    /// 2021 Day 9: Smoke Basin
+    pub const DAY9: &str = concat!(include_str!("advent-of-code-data/2021/day9.txt"), "\0");
+
+    /// 2021 Day 10: Syntax Scoring
+    pub const DAY10: &str = concat!(include_str!("advent-of-code-data/2021/day10.txt"), "\0");
+
+    /// 2021 Day 11: Dumbo Octopus
+    pub const DAY11: &str = concat!(include_str!("advent-of-code-data/2021/day11.txt"), "\0");
+
     /// Array containing all inputs in chronological order
-    pub const INPUTS: &[&str] = &[DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8];
+    pub const INPUTS: &[&str] = &[
+        DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10, DAY11,
+    ];
 }
 
 #[repr(C)]
