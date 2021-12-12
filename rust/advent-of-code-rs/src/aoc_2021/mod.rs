@@ -3,6 +3,7 @@ use advent_of_code_data_rs::{get_input, Day, Year};
 
 mod day1;
 mod day10;
+mod day11;
 mod day2;
 mod day3;
 mod day4;
@@ -14,6 +15,7 @@ mod day9;
 
 pub use day1::Day1;
 pub use day10::Day10;
+pub use day11::Day11;
 pub use day2::Day2;
 pub use day3::Day3;
 pub use day4::Day4;
@@ -41,6 +43,7 @@ impl SolutionYear for Aoc2021 {
             Day::Eight => add_sln!(Day8, input),
             Day::Nine => add_sln!(Day9, input),
             Day::Ten => add_sln!(Day10, input),
+            Day::Eleven => add_sln!(Day11, input),
             _ => None,
         }
     }
