@@ -398,9 +398,22 @@ pub mod aoc_2021 {
     /// 2021 Day 12: Passage Pathing
     pub const DAY12: &str = concat!(include_str!("advent-of-code-data/2021/day12.txt"), "\0");
 
+    /// 2021 Day 13: Transparent Origami
+    pub const DAY13: &str = concat!(include_str!("advent-of-code-data/2021/day13.txt"), "\0");
+
+    /// 2021 Day 14: Extended Polymerization
+    pub const DAY14: &str = concat!(include_str!("advent-of-code-data/2021/day14.txt"), "\0");
+
+    /// 2021 Day 15: Chiton
+    pub const DAY15: &str = concat!(include_str!("advent-of-code-data/2021/day15.txt"), "\0");
+
+    /// 2021 Day 16: Packet Decoder
+    pub const DAY16: &str = concat!(include_str!("advent-of-code-data/2021/day16.txt"), "\0");
+
     /// Array containing all inputs in chronological order
     pub const INPUTS: &[&str] = &[
-        DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10, DAY11, DAY12,
+        DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10, DAY11, DAY12, DAY13, DAY14,
+        DAY15, DAY16,
     ];
 }
 
