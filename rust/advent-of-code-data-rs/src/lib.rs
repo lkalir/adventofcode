@@ -413,10 +413,34 @@ pub mod aoc_2021 {
     /// 2021 Day 17: Trick Shot
     pub const DAY17: &str = concat!(include_str!("advent-of-code-data/2021/day17.txt"), "\0");
 
+    /// 2021 Day 18: Snailfish
+    pub const DAY18: &str = concat!(include_str!("advent-of-code-data/2021/day18.txt"), "\0");
+
+    /// 2021 Day 19: Beacon Scanner
+    pub const DAY19: &str = concat!(include_str!("advent-of-code-data/2021/day19.txt"), "\0");
+
+    /// 2021 Day 20: Trench Map
+    pub const DAY20: &str = concat!(include_str!("advent-of-code-data/2021/day20.txt"), "\0");
+
+    /// 2021 Day 21: Dirac Dice
+    pub const DAY21: &str = concat!(include_str!("advent-of-code-data/2021/day21.txt"), "\0");
+
+    /// 2021 Day 22: Reactor Reboot
+    pub const DAY22: &str = concat!(include_str!("advent-of-code-data/2021/day22.txt"), "\0");
+
+    /// 2021 Day 23: Amphipod
+    pub const DAY23: &str = concat!(include_str!("advent-of-code-data/2021/day23.txt"), "\0");
+
+    /// 2021 Day 24: Arithmetic Logic Unit
+    pub const DAY24: &str = concat!(include_str!("advent-of-code-data/2021/day24.txt"), "\0");
+
+    /// 2021 Day 25: Sea Cucumber
+    pub const DAY25: &str = concat!(include_str!("advent-of-code-data/2021/day25.txt"), "\0");
+
     /// Array containing all inputs in chronological order
     pub const INPUTS: &[&str] = &[
         DAY1, DAY2, DAY3, DAY4, DAY5, DAY6, DAY7, DAY8, DAY9, DAY10, DAY11, DAY12, DAY13, DAY14,
-        DAY15, DAY16, DAY17,
+        DAY15, DAY16, DAY17, DAY18, DAY19, DAY20, DAY21, DAY22, DAY23, DAY24, DAY25
     ];
 }
 
