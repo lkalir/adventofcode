@@ -1,23 +1,12 @@
 #include <adventofcode.h>
 #include <getopt.h>
+
 #include <iostream>
 #include <memory>
+#include <span>
 #include <stdexcept>
 
 #include <aoc.h>
-
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2015_slns = {
-    std::make_unique<AocSolution<1, 2015>>(), std::make_unique<AocSolution<2, 2015>>(),
-    std::make_unique<AocSolution<3, 2015>>(), std::make_unique<AocSolution<4, 2015>>(),
-    std::make_unique<AocSolution<5, 2015>>(),
-};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2016_slns = {};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2017_slns = {};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2018_slns = {};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2019_slns = {
-    std::make_unique<AocSolution<1, 2019>>(),
-};
-static const std::array<std::unique_ptr<AbstractAdventSolution>, 25> aoc_2020_slns = {};
 
 class AocDate {
   public:
@@ -39,43 +28,110 @@ class AocDate {
     int m_year;
 };
 
-auto get_fn(const AocDate &date) -> const std::unique_ptr<AbstractAdventSolution> &
+static auto make_2015_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    constexpr int YEAR = YEAR_2015;
+
+    switch (day)
+    {
+    case 1:
+        return std::make_unique<AocSolution<1, YEAR>>();
+    case 2:
+        return std::make_unique<AocSolution<2, YEAR>>();
+    case 3:
+        return std::make_unique<AocSolution<3, YEAR>>();
+    case 4:
+        return std::make_unique<AocSolution<4, YEAR>>();
+    case 5:
+        return std::make_unique<AocSolution<5, YEAR>>();
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2016_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    switch (day)
+    {
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2017_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    switch (day)
+    {
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2018_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    switch (day)
+    {
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2019_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    constexpr int YEAR = YEAR_2019;
+
+    switch (day)
+    {
+    case 1:
+        return std::make_unique<AocSolution<1, YEAR>>();
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2020_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    switch (day)
+    {
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+static auto make_2021_slns(const int day) -> const std::unique_ptr<AbstractAdventSolution>
+{
+    switch (day)
+    {
+    default:
+        throw std::range_error("Day not yet implemented");
+    }
+}
+
+auto get_fn(const AocDate &date) -> const std::unique_ptr<AbstractAdventSolution>
 {
     if (!date.is_day_valid())
         throw std::invalid_argument("Day must be between 1 and 25");
 
-    const std::array<std::unique_ptr<AbstractAdventSolution>, 25> *sln_list = nullptr;
-
     switch (date.get_year())
     {
-    case 2015:
-        sln_list = &aoc_2015_slns;
-        break;
-    case 2016:
-        sln_list = &aoc_2016_slns;
-        break;
-    case 2017:
-        sln_list = &aoc_2017_slns;
-        break;
-    case 2018:
-        sln_list = &aoc_2018_slns;
-        break;
-    case 2019:
-        sln_list = &aoc_2019_slns;
-        break;
-    case 2020:
-        sln_list = &aoc_2020_slns;
-        break;
+    case YEAR_2015:
+        return make_2015_slns(date.get_day());
+    case YEAR_2016:
+        return make_2016_slns(date.get_day());
+    case YEAR_2017:
+        return make_2017_slns(date.get_day());
+    case YEAR_2018:
+        return make_2018_slns(date.get_day());
+    case YEAR_2019:
+        return make_2019_slns(date.get_day());
+    case YEAR_2020:
+        return make_2020_slns(date.get_day());
+    case YEAR_2021:
+        return make_2021_slns(date.get_day());
     default:
-        throw std::invalid_argument("Year must be between 2015 and 2020");
+        throw std::invalid_argument("Year must be between " + std::to_string(YEAR_START) + " and "
+                                    + std::to_string(YEAR_MAX));
     }
-
-    auto &ret = sln_list->at(date.get_day() - 1);
-
-    if (!ret)
-        throw std::range_error("Day not yet implemented");
-
-    return ret;
 }
 
 auto main(int argc, char **argv) -> int
@@ -84,6 +140,8 @@ auto main(int argc, char **argv) -> int
     int year = 0;
     int opt = 0;
     int part = 0;
+
+    const std::span<char *> args(argv, argc);
 
     while (-1 != (opt = getopt(argc, argv, "d:y:p:")))
     {
@@ -99,7 +157,7 @@ auto main(int argc, char **argv) -> int
             part = atoi(optarg);
             break;
         default:
-            std::cout << "Usage: " << argv[0] << " -d day -y year [-p part]" << std::endl;
+            std::cout << "Usage: " << args.front() << " -d day -y year [-p part]" << std::endl;
             exit(EXIT_FAILURE);
         }
     }
@@ -108,7 +166,7 @@ auto main(int argc, char **argv) -> int
 
     try
     {
-        auto &fn = get_fn(date);
+        const auto fn = get_fn(date);
         if (!part || part == 1)
             std::cout << date << " " << fn->name() << " part 1: " << fn->part1(fn->inputs())
                       << std::endl;

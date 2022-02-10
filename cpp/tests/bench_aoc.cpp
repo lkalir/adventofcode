@@ -1,18 +1,19 @@
-#include <aoc.h>
 #include <benchmark/benchmark.h>
+
+#include <aoc.h>
 
 #define BM_AOCSLN(day, year)                                                 \
     static auto BM_Aoc##year##Day##day##Part1(benchmark::State &state)->void \
     {                                                                        \
-        AocSolution<day, year> dut;                                          \
-        auto data = dut.inputs();                                            \
+        const AocSolution<day, year> dut;                                          \
+        const auto data = dut.inputs();                                      \
         for (auto _ : state)                                                 \
             benchmark::DoNotOptimize(dut.part1(data));                       \
     }                                                                        \
     static auto BM_Aoc##year##Day##day##Part2(benchmark::State &state)->void \
     {                                                                        \
-        AocSolution<day, year> dut;                                          \
-        auto data = dut.inputs();                                            \
+        const AocSolution<day, year> dut;                                          \
+        const auto data = dut.inputs();                                      \
         for (auto _ : state)                                                 \
             benchmark::DoNotOptimize(dut.part2(data));                       \
     }                                                                        \

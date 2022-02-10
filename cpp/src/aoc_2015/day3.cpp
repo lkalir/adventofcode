@@ -1,18 +1,22 @@
-#include <aoc.h>
 #include <array>
 #include <set>
 #include <string>
 #include <string_view>
 #include <utility>
 
+#include <aoc.h>
+
+constexpr int DAY = 3;
+constexpr int YEAR = YEAR_2015;
+
 static const std::string day3_name("Perfectly Spherical Houses in a Vacuum");
 
-template <> auto AocSolution<3, 2015>::name() const -> const std::string &
+template <> auto AocSolution<DAY, YEAR>::name() const -> const std::string &
 {
     return day3_name;
 }
 
-template <> auto AocSolution<3, 2015>::part1(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part1(const std::string_view &input) const -> int
 {
     std::set<std::pair<int, int>> visited;
     visited.insert(std::pair<int, int>(0, 0));
@@ -43,7 +47,7 @@ template <> auto AocSolution<3, 2015>::part1(const std::string_view &input) cons
     return (int) visited.size();
 }
 
-template <> auto AocSolution<3, 2015>::part2(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part2(const std::string_view &input) const -> int
 {
     std::set<std::pair<int, int>> visited;
     visited.insert(std::pair<int, int>(0, 0));
@@ -73,5 +77,5 @@ template <> auto AocSolution<3, 2015>::part2(const std::string_view &input) cons
         idx = (idx + 1) % 2;
     }
 
-    return (int) visited.size();
+    return static_cast<int>(visited.size());
 }

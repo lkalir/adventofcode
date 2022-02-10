@@ -6,8 +6,10 @@
 #include <utility>
 
 #include <aoc.h>
-
 #include "util.h"
+
+constexpr int DAY = 2;
+constexpr int YEAR = YEAR_2015;
 
 class Rectangle {
   public:
@@ -49,12 +51,12 @@ class Rectangle {
 
 static const std::string day2_name("I Was Told There Would Be No Math");
 
-template <> auto AocSolution<2, 2015>::name() const -> const std::string &
+template <> auto AocSolution<DAY, YEAR>::name() const -> const std::string &
 {
     return day2_name;
 }
 
-template <> auto AocSolution<2, 2015>::part1(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part1(const std::string_view &input) const -> int
 {
     auto sum = 0;
 
@@ -75,7 +77,7 @@ template <> auto AocSolution<2, 2015>::part1(const std::string_view &input) cons
     return sum;
 }
 
-template <> auto AocSolution<2, 2015>::part2(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part2(const std::string_view &input) const -> int
 {
     auto sum = 0;
 

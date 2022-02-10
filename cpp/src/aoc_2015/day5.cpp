@@ -1,14 +1,18 @@
 #include <algorithm>
-#include <aoc.h>
-#include <boost/circular_buffer.hpp>
 #include <string>
 #include <string_view>
 
+#include <boost/circular_buffer.hpp>
+
+#include <aoc.h>
 #include "util.h"
+
+constexpr int DAY = 5;
+constexpr int YEAR = YEAR_2015;
 
 static const std::string day5_name("Doesn't He Have Intern-Elves For This?");
 
-template <> auto AocSolution<5, 2015>::name() const -> const std::string &
+template <> auto AocSolution<DAY, YEAR>::name() const -> const std::string &
 {
     return day5_name;
 }
@@ -80,7 +84,7 @@ static auto is_nice_part_2(const std::string_view &word) -> bool
     return split_letters && duplicate_string;
 }
 
-template <> auto AocSolution<5, 2015>::part1(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part1(const std::string_view &input) const -> int
 {
     auto cnt = 0;
 
@@ -92,7 +96,7 @@ template <> auto AocSolution<5, 2015>::part1(const std::string_view &input) cons
     return cnt;
 }
 
-template <> auto AocSolution<5, 2015>::part2(const std::string_view &input) const -> int
+template <> auto AocSolution<DAY, YEAR>::part2(const std::string_view &input) const -> int
 {
     auto cnt = 0;
 

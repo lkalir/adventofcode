@@ -6,6 +6,17 @@
 #include <cstring>
 #include <string_view>
 
+constexpr int YEAR_2015 = 2015;
+constexpr int YEAR_2016 = 2016;
+constexpr int YEAR_2017 = 2017;
+constexpr int YEAR_2018 = 2018;
+constexpr int YEAR_2019 = 2019;
+constexpr int YEAR_2020 = 2020;
+constexpr int YEAR_2021 = 2021;
+
+constexpr int YEAR_START = YEAR_2015;
+constexpr int YEAR_MAX = YEAR_2021;
+
 class AbstractAdventSolution {
   public:
     AbstractAdventSolution(uint8_t day, uint16_t year) : m_day(day), m_year(year) {};
